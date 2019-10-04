@@ -1,0 +1,22 @@
+<mat-toolbar  color="accent">
+    <!-- <mat-icon aria-hidden="false"  icon="pi pi-arrow-right" aria-label="Example home icon">home</mat-icon> -->
+    <button pButton type="button" (click)="visibleSidebar1 = true"><i class="fa fa-bars"></i>Home</button>
+    <h1>Sky Cliff IT Solution PVT LTD DHARWAD</h1>
+</mat-toolbar>
+
+
+<p-sidebar  [(visible)]="visibleSidebar1">
+  <h3 style="font-weight:normal">MENU</h3>
+  <a class="nav-link active active-class" [routerLink]="['']" routerLinkActive="router-link-active">
+  <i class="fa fa-phone-square-alt"></i>Home</a>
+  <br>
+  <a class="nav-link"  href="#" [routerLink]="['/employeedetails']" routerLinkActive="router-link-active">Employee details</a>
+  <br>
+  <a class="nav-link" href="#" [routerLink]="['/aboutus']" routerLinkActive="router-link-active">About us</a>
+  <br>
+  <a class="nav-link" href="#" [routerLink]="['/contactus']" routerLinkActive="router-link-active">Contact Us</a>
+  <br>
+  </p-sidebar>
+
+
+

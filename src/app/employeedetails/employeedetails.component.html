@@ -1,0 +1,125 @@
+<app-sidebar></app-sidebar>
+
+   <button style="float:right" type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Employee</button>
+<div class="container">
+    <h1> EMPLOYEE DETAILS</h1>&nbsp;&nbsp;
+<table class="table table-striped">
+  <thead>
+    <th> </th>
+<th>EMPLOYEE ID</th>
+<th>NAME</th>
+<th>DESCRIPTION</th>
+</thead>
+<tbody>
+    <tr *ngFor="let item of arr | paginate: config" >
+        <td>
+            <i
+            class="fa fa-user-plus fa-2x"
+            aria-hidden="true"
+            title="Patient"
+            ></i>
+            </td>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td><button class="btn btn-info" (click)="confirmDelete(item.id)" >Delete</button>&nbsp;&nbsp;
+        <button  type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1" (click)="editemployeeget(item)" >Edit</button>
+      </td>
+    </tr>
+</tbody>
+</table>
+<pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+<!-- EDIT POP UP -->
+
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="container">
+
+
+        <form (ngSubmit)="UpdateEmployee(f1)"  #f1="ngForm">
+            <h2 style="margin-left: 80px">Edit</h2>
+            <div class="form-group" >
+                <label>Employee ID</label>
+                <input name="id" [(ngModel)]="id"  class="form-control" style="width: 500px"  type="text">
+
+              </div>
+            <div class="form-group" >
+              <label>Employee Name</label>
+              <input name="name" [(ngModel)]="name"  class="form-control" style="width: 500px"  type="text">
+
+            </div>
+            <div class="form-group" >
+              <label>description</label>
+              <input name="description"  [(ngModel)]="description" class="form-control"  style="width: 500px"  type="text" >
+
+            </div>
+
+            <div class="form-group">
+              <button type="submit" style="width: 100px"  class="form-control btn btn-primary" >Update</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- add pop up -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="container">
+
+
+        <form (ngSubmit)="onEmployeeSave(f)" #f="ngForm">
+            <h2 style="margin-left: 120px">Add</h2>
+
+            <div class="form-group" >
+              <label>Name</label>
+              <input name="name" ngModel class="form-control" style="width: 500px"  type="text"  placeholder="Enter Address ">
+
+            </div>
+            <div class="form-group" >
+                <label>Description</label>
+                <input name="description" ngModel class="form-control" style="width: 500px"  type="text"  placeholder="Enter Address ">
+
+              </div>
+
+
+            <div class="form-group">
+              <button  type="submit" style="width: 100px" class="form-control btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+  <footer class="page-footer font-small blue pt-4">
+      <div class="">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-3 footer-center text-left"> <img src="assets/logo.png" alt=""> </div>
+                  <div class="col-md-6 footer-left text-left text-center">
+                      © 2018 All Rights Reserved for Skycliff IT PVT. LTD
+                  </div>
+                  <i class="fa fa-facebook text-xs circle"></i>
+              </div>
+          </div>
+      </div>
+    </footer>
