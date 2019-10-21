@@ -2,3 +2,17 @@ footer.page-footer.font-small.blue.pt-4 {
   background-color: rgb(35, 35, 39);
   color: rgb(248, 240, 240);
 }
+.employee{
+  margin-top:-10px;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+h1 {
+  margin-left: 50px;
+}

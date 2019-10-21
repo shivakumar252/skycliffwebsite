@@ -1,0 +1,132 @@
+<app-sidebar></app-sidebar><br><br>
+<marquee>
+<h1>context menu type mat table</h1>
+</marquee>
+<button mat-raised-button color="primary" (click)="removeSelectedRows()">
+    Remove Selected Rows
+  </button>
+<!-- <p>Right-click on the items below to show the context menu:</p> -->
+<table mat-table [dataSource]="dataSource" class="table table-striped table-dark">
+    <ng-container matColumnDef="select">
+  <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+	<ng-container matColumnDef="id">
+		<th mat-header-cell *matHeaderCellDef> ID </th>
+		<td mat-cell *matCellDef="let item" (contextmenu)="onContextMenu($event, item)">
+      {{item.id}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+		<th mat-header-cell *matHeaderCellDef> Name </th>
+		<td mat-cell *matCellDef="let item" (contextmenu)="onContextMenu($event, item)">
+      {{item.name}}
+    </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+		<th mat-header-cell *matHeaderCellDef> Description </th>
+		<td mat-cell *matCellDef="let item" (contextmenu)="onContextMenu($event, item)">
+      {{item.description}}
+		</td>
+  </ng-container>
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div style="visibility: hidden; position: fixed"
+  [style.left]="contextMenuPosition.x"
+  [style.top]="contextMenuPosition.y"
+  [matMenuTriggerFor]="contextMenu">
+</div>
+<mat-menu #contextMenu="matMenu">
+	<ng-template matMenuContent let-item="item">
+		<button mat-menu-item (click)="onUserDelete(item.id)">Delete</button>
+		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1" mat-menu-item (click)="editemployeeget(item)">Edit </button>
+  <button type="button" class="btn btn-ifo" data-toggle="modal" data-target="#myModal"  mat-menu-item >add</button>
+  </ng-template>
+</mat-menu>
+<div class="modal fade" id="myModal1" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="container">
+
+
+      <form (ngSubmit)="UpdateEmployee(f1)"  #f1="ngForm">
+          <h2 style="margin-left: 80px">Edit</h2>
+          <div class="form-group" >
+              <label>Employee ID</label>
+              <input name="id" [(ngModel)]="id"  class="form-control" style="width: 500px"  type="text">
+
+            </div>
+          <div class="form-group" >
+            <label>Employee Name</label>
+            <input name="name" [(ngModel)]="name"  class="form-control" style="width: 500px"  type="text">
+
+          </div>
+          <div class="form-group" >
+            <label>description</label>
+            <input name="description"  [(ngModel)]="description" class="form-control"  style="width: 500px"  type="text" >
+
+          </div>
+
+          <div class="form-group">
+            <button type="submit" style="width: 100px"  class="form-control btn btn-primary" >Update</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ADD POP UP -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="container">
+
+
+      <form (ngSubmit)="onEmployeeSave(f)" #f="ngForm">
+          <h2 style="margin-left: 120px">Add</h2>
+
+          <div class="form-group" >
+            <label>Name</label>
+            <input name="name" ngModel class="form-control" style="width: 500px"  type="text"  placeholder="Enter Address ">
+
+          </div>
+          <div class="form-group" >
+              <label>Description</label>
+              <input name="description" ngModel class="form-control" style="width: 500px"  type="text"  placeholder="Enter Address ">
+
+            </div>
+
+
+          <div class="form-group">
+            <button  type="submit" style="width: 100px" class="form-control btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

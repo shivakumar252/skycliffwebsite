@@ -1,9 +1,18 @@
-<mat-toolbar  color="accent">
-    <!-- <mat-icon aria-hidden="false"  icon="pi pi-arrow-right" aria-label="Example home icon">home</mat-icon> -->
-    <button pButton type="button" (click)="visibleSidebar1 = true"><i class="fa fa-bars"></i>Home</button>
-    <h1>Sky Cliff IT Solution PVT LTD DHARWAD</h1>
-</mat-toolbar>
+<!-- <mat-toolbar  color="accent">
 
+    <button pButton type="button" (click)="visibleSidebar1 = true"><mat-icon aria-hidden="false"  icon="pi pi-arrow-right" aria-label="Example home icon"></mat-icon>Home</button>
+    <h1>Sky Cliff IT Solution PVT LTD DHARWAD</h1>
+</mat-toolbar> -->
+<mat-toolbar  color="accent">
+  <button (click)="visibleSidebar1 = true"   matTooltip="contents of organization" aria-label="Button that displays a tooltip when focused or hovered over"><i class="fa fa-briefcase" ></i>MENU</button>
+ <marquee>
+  <h1>SkyCliff IT Solution PVT LTD DHARWAD </h1>
+
+ <!-- <h5> {{todaydate |date:'d/M/y'}}</h5><br><br><br><br>
+  <b> {{todaydate| date:'HH:mm:ss'}} </b> -->
+
+</marquee>
+</mat-toolbar>
 
 <p-sidebar  [(visible)]="visibleSidebar1">
   <h3 style="font-weight:normal">MENU</h3>
@@ -16,7 +25,17 @@
   <br>
   <a class="nav-link" href="#" [routerLink]="['/contactus']" routerLinkActive="router-link-active">Contact Us</a>
   <br>
+  <a class="nav-link" href="#" [routerLink]="['/primengdata']" routerLinkActive="router-link-active">primengdata</a>
+  <br>
+  <a class="nav-link" href="#"  [routerLink]="['/contextmenu']" routerLinkActive="router-link-active">contextmenu</a>
+  <br>
+  <a class="nav-link" href="#"  [routerLink]="['/materialtable']" routerLinkActive="router-link-active">materialtable</a>
+  <br>
+  <a class="nav-link" href="#"  [routerLink]="['/syncsidebar']" routerLinkActive="router-link-active">syncsidebar</a>
+  <br>
   </p-sidebar>
+  <li *ngIf="!isLoggedIn()"  [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active"><a  [routerLink]="['/login']">Login</a></li>
+  <li *ngIf="isLoggedIn()" routerLinkActive="active"><a (click)="onLogOut()" >LogOut</a></li>
 
 
 

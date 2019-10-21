@@ -1,35 +1,63 @@
 <app-sidebar></app-sidebar>
-
-   <button style="float:right" type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Employee</button>
+<br><br><br><br>
 <div class="container">
+   <button style="float:right" type="button"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Employee</button>
+   <button (click)="deleteAll()" >Click</button>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
     <h1> EMPLOYEE DETAILS</h1>&nbsp;&nbsp;
-<table class="table table-striped">
-  <thead>
+<!-- <marquee direction="down" bgcolor="azure"> -->
+        </mat-panel-title>
+        <mat-panel-description>
+            <h1> {{todaydate |date:'d/M/y'}}</h1><br><br><br>
+            <h1><b> {{todaydate| date:'HH:mm:ss'}} </b></h1>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+    <table class="table table-striped" [svData]="arr" #sv="svDataTable" [svRowsOnPage]="5" svSortBy="name" svSortOrder="asc">
+      <thead>
+        <tr>
+
     <th> </th>
 <th>EMPLOYEE ID</th>
-<th>NAME</th>
+ <th> <sv-default-sorter by="name">Name</sv-default-sorter> </th>
 <th>DESCRIPTION</th>
+</tr>
 </thead>
 <tbody>
-    <tr *ngFor="let item of arr | paginate: config" >
-        <td>
+    <tr *ngFor="let item of sv.data" >
+        <!-- <td>
             <i
             class="fa fa-user-plus fa-2x"
             aria-hidden="true"
             title="Patient"
             ></i>
-            </td>
-      <td>{{item.id}}</td>
+            </td> -->
+
+      <td> <input type="checkbox" (click)="checkbox(item)"></td>
+      <td>{{item.id|currency:'INR':'code'}}</td>
       <td>{{item.name}}</td>
-      <td>{{item.description}}</td>
+      <td>{{item.description|uppercase }}</td>
       <td><button class="btn btn-info" (click)="confirmDelete(item.id)" >Delete</button>&nbsp;&nbsp;
         <button  type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1" (click)="editemployeeget(item)" >Edit</button>
       </td>
     </tr>
 </tbody>
+
+<tfoot>
+  <tr>
+    <td colspan="4">
+      <sv-bootstrap-paginator [rowsOnPageSet]="[5, 10, 25]"></sv-bootstrap-paginator>
+  </td>
+  </tr>
+</tfoot>
 </table>
+<!-- </marquee> -->
+
 <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
-</div>
+
+</mat-expansion-panel>
 
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
@@ -109,17 +137,19 @@
 
     </div>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br>
-  <footer class="page-footer font-small blue pt-4">
-      <div class="">
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-3 footer-center text-left"> <img src="assets/logo.png" alt=""> </div>
-                  <div class="col-md-6 footer-left text-left text-center">
-                      © 2018 All Rights Reserved for Skycliff IT PVT. LTD
-                  </div>
-                  <i class="fa fa-facebook text-xs circle"></i>
+
+</div>
+
+<footer class="page-footer font-small blue pt-4">
+  <div class="">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-3 footer-center text-left"> <img src="assets/logo.png" alt=""> </div>
+              <div class="col-md-6 footer-left text-left text-center">
+                  © 2018 All Rights Reserved for Skycliff IT PVT. LTD
               </div>
+              <i class="fa fa-facebook text-xs circle"></i>
           </div>
       </div>
-    </footer>
+  </div>
+</footer>

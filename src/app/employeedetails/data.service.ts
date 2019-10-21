@@ -5,9 +5,9 @@ import { promise } from 'protractor';
   providedIn: 'root'
 })
 export class DataService {
-  url:string="https://f0d80717.ngrok.io/api/Settings/GetDesignations"
-deleteurl:string="https://f0d80717.ngrok.io/api/Settings/DeleteDesignation?DesignationId="
-editurl:string="https://f0d80717.ngrok.io/api/Settings/InsUpdateDesignation"
+  url:string="https://3df52e24.ngrok.io/api/Settings/GetDesignations"
+deleteurl:string="https://3df52e24.ngrok.io/api/Settings/DeleteDesignation?DesignationId="
+editurl:string="https://3df52e24.ngrok.io/api/Settings/InsUpdateDesignation"
   constructor(private _http:HttpClient) { }
 
   getAllemployeedetails(){
@@ -20,11 +20,11 @@ deleteemployee(id){
 editemployee(item){
   let head = new HttpHeaders().set("Content-Type", "application/json");
   let body = JSON.stringify(item);
-  return this._http.post(this.editurl , body,{headers: head});
+  return this._http.post(this.editurl,body,{headers: head});
 }
 addemployee(item){
   let head = new HttpHeaders().set("Content-Type", "application/json");
   let body = JSON.stringify(item);
-  return this._http.post(this.editurl , body,{headers: head});
+  return this._http.post(this.editurl,body,{headers: head});
 }
 }

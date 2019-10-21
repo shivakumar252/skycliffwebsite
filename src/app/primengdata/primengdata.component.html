@@ -1,0 +1,61 @@
+<app-sidebar></app-sidebar>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+<p-table [columns]="cols" [value]="arr" [(contextMenuSelection)]="selectedEmployee" [contextMenu]="cm">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pContextMenuRow]="rowData">
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+
+            </td>
+            <button  type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal1" (click)="editemployeeget(item)">Edit</button>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-contextMenu #cm [model]="items"></p-contextMenu>
+<div class="modal fade" id="myModal1" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="container">
+
+
+      <form (ngSubmit)="UpdateEmployee(f1)"  #f1="ngForm">
+          <h2 style="margin-left: 80px">Edit</h2>
+          <div class="form-group" >
+              <label>Employee ID</label>
+              <input name="id" [(ngModel)]="id"  class="form-control" style="width: 500px"  type="text">
+
+            </div>
+          <div class="form-group" >
+            <label>Employee Name</label>
+            <input name="name" [(ngModel)]="name"  class="form-control" style="width: 500px"  type="text">
+
+          </div>
+          <div class="form-group" >
+            <label>description</label>
+            <input name="description"  [(ngModel)]="description" class="form-control"  style="width: 500px"  type="text" >
+
+          </div>
+
+          <div class="form-group">
+            <button type="submit" style="width: 100px"  class="form-control btn btn-primary" >Update</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

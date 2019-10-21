@@ -1,0 +1,18 @@
+button.mat-menu-trigger {
+  color: blue;
+}
+mat-toolbar.mat-toolbar.mat-toolbar-single-row {
+  color: rgb(6, 32, 80);
+  margin-left: -10px;
+  padding-left: 25px;
+}
+button.mat-menu-trigger {
+  margin: right;
+  margin-right: 250px;
+}
+mat-toolbar.mat-toolbar.mat-toolbar-single-row {
+  background-color: azure;
+}
+img {
+  inline-size: -webkit-fill-available;
+}
