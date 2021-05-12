@@ -26,7 +26,7 @@
     "@syncfusion/ej2-angular-lists": "^17.3.16",
     "@syncfusion/ej2-angular-navigations": "^17.3.17",
     "bs-stepper": "^1.7.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "ng-angular8-datatable": "^0.9.11",
     "ngx-bootstrap": "^5.2.0",
     "ngx-bootstrap-modal": "^2.0.1",
